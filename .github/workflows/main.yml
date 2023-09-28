@@ -19,10 +19,10 @@ jobs:
           distribution: corretto
 
       - name: Upload html test report
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3.1.3
         with:
           name: lint.html
-          path: app/build/reports/lint-results-debug.html
+          path: app/build
           
 
       
