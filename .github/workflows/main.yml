@@ -48,6 +48,33 @@ jobs:
           name: unit_test_report
           path: app/build/reports/tests/testDebugUnitTest/
 
+  instrumentation-test:
+    needs: [unit-test]
+    runs-on: windows-latest
+    steps:
+      - name: Checkout the code
+        uses: actions/checkout@v4
+
+      - name: Setup JDK
+        uses: actions/setup-java@v3.13.0
+        with:
+          java-version: 18
+          distribution: corretto
+
+
+      - name: Run integration tests
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 29
+          script: ./gradlew connectedCheck
+
+      - name: Upload test report
+        uses: actions/upload-artifact@v3.1.3
+        with:
+          name: instrumentation_test_report
+          path: app/build/reports/androidTests/connected/
+          
+
         
     
           
