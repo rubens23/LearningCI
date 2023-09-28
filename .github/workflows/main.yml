@@ -50,26 +50,6 @@ jobs:
           name: unit_test_report
           path: app/build/reports/tests/testDebugUnitTest/
 
-  connected-tests:
-    runs-on: macos-latest
-    
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v3
-
-      - name: Setup JDK
-        uses: actions/setup-java@v3.13.0
-        with:
-          java-version: 18
-          distribution: corretto
-        
-      - name: Run connected tests
-        uses: ReactiveCircus/android-emulator-runner@v2
-        with:
-          api-level: 30
-          target: google_apis
-          arch: x86_64
-          script: ./gradlew connectedCheck
 
   instrumentation-test:
     needs: [unit-test]
@@ -83,6 +63,9 @@ jobs:
         with:
           java-version: 18
           distribution: corretto
+
+      - name: Make gradlew executable
+        run: chmod +x ./gradlew
 
 
       - name: Run integration tests
