@@ -12,5 +12,10 @@ jobs:
     steps:
       - name: Checkout the code
         uses: actions/checkout@v4
+      - name: Setup JDK
+        uses: actions/setup-java@v3.13.0
+        with: 
+          java-version: 18
+          
 
       
