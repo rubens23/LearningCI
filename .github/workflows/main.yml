@@ -22,7 +22,7 @@ jobs:
         uses: actions/upload-artifact@v3.1.3
         with:
           name: lint.html
-          path: app/build
+          path: app/build/reports/lint-results-debug.html
           
 
       
