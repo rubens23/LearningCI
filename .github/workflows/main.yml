@@ -17,6 +17,12 @@ jobs:
         with: 
           java-version: 18
           distribution: corretto
+
+      - name: Upload html test report
+        uses: actions/upload-artifact@v2
+        with:
+          name: lint.html
+          path: app/build/reports/lint-results-debug.html
           
 
       
