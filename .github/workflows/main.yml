@@ -53,10 +53,16 @@ jobs:
 
   instrumentation-test:
     needs: [unit-test]
-    runs-on: macos-latest
+    runs-on: macos-11
     steps:
       - name: Checkout the code
         uses: actions/checkout@v4
+
+      - name: Setup JDK
+        uses: actions/setup-java@v3.13.0
+        with:
+          java-version: 18
+          distribution: corretto
 
 
       - name: Run integration tests
