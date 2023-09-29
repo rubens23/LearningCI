@@ -79,6 +79,26 @@ jobs:
         with:
           name: instrumentation_test_report
           path: app/build/reports/androidTests/connected/
+
+  static-code-analysis:
+    needs: [instrumentation-test]
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout the code
+        uses: actions/checkout@v4
+
+      - name: Setup JDK
+        uses: actions/setup-java@v3.13.0
+        with:
+          java-version: 18
+          distribution: corretto
+
+      - name: SonarCloud Scan
+        run: ./gradlew app:sonarqube -Dsonar.login=${{ secrets.SONAR_TOKEN }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    
           
 
         
