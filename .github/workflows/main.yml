@@ -52,8 +52,7 @@ jobs:
 
 
   instrumentation-test:
-    needs: [unit-test]
-    runs-on: macos-latest
+    runs-on: macOS-latest
     steps:
       - name: Checkout the code
         uses: actions/checkout@v4
@@ -68,7 +67,7 @@ jobs:
       - name: Run integration tests
         uses: ReactiveCircus/android-emulator-runner@v2.28.0
         with:
-          api-level: 30
+          api-level: 29
           script: ./gradlew connectedCheck
 
       - name: Upload test report
