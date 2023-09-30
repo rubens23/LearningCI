@@ -99,9 +99,6 @@ jobs:
       - name: Grant execute permission to gradlew
         run: chmod +x ./gradlew
 
-      - name: Set up gradle properties
-        run: echo "systemProp.sonar.login=${{ secrets.SONAR_TOKEN }}" >> gradle.properties
-
       - name: SonarCloud Scan
         run: ./gradlew app:sonarqube -Dsonar.login=${{ secrets.SONAR_TOKEN }}
         env:
